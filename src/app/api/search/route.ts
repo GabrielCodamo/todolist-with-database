@@ -15,7 +15,8 @@ export async function POST(request: Request) {
             },
             select: {
                 category: true,
-                taskName: true
+                taskName: true,
+                dueDate: true
             }
         })
 

@@ -124,7 +124,7 @@ export function TaskInput({ chave }: chaveProps) {
           body: JSON.stringify({ id: chave }), // Transforma o objeto JS em string JSON
         });
 
-        const { category, taskName } = await response.json()
+        const { category, taskName, dueDate } = await response.json()
 
         if (!response.ok) {
           console.warn("Resposta da rede não foi sucesso");
@@ -135,6 +135,7 @@ export function TaskInput({ chave }: chaveProps) {
           // Seta os valores nos campos desejados
           setValue("category", category, { shouldValidate: true });
           setValue("taskName", taskName, { shouldValidate: true });
+          setValue("dueDate", new Date(dueDate), { shouldValidate: true });
         }
       } catch (err) {
         console.error("Erro no fetch:", err);
