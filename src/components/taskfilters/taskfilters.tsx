@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { normalizeTaskField } from "@/utils/normalizeTaskField";
 import { Search } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ChangeEvent, useState } from "react";
@@ -37,11 +38,13 @@ export function TaskFilters() {
 
   function handleSearchFilter(e: ChangeEvent<HTMLInputElement>) {
     const term = e.target.value
+
+
     setSearchValue(term)
 
     const params = new URLSearchParams(searchParams)
     if (term) {
-      params.set("search", term)
+      params.set("search", normalizeTaskField(term))
     } else {
       params.delete("search")
     }
