@@ -58,8 +58,8 @@ export function TaskFilters() {
 
 
   return (
-    <div className="flex flex-col sm:flex-row gap-2 w-[836] max-w-lg lg:max-w-4xl justify-between">
-      <div className="flex gap-2 justify-baseline max-[640px]:justify-center  flex-wrap">
+    <div className="flex flex-col items-center md:flex-row gap-2 w-70 md:w-[836] max-w-lg lg:max-w-4xl justify-between">
+      <div className="flex gap-2  justify-center max-[640px]:justify-center flex-wrap">
         {
           filters.map((filter) => (
             <div key={filter}>
@@ -77,7 +77,7 @@ export function TaskFilters() {
         }
       </div>
       <div className="flex items-center gap-2">
-        <div className="relative flex-1 sm:w-69 ">
+        <div className="relative flex-1 sm:w-75 md:w-69">
           <Search className="absolute left-3 top-1/2 h-5 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
             placeholder="Buscar tarefas..."

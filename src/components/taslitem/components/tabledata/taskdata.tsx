@@ -146,7 +146,7 @@ export function TaskData({ data, searchParamsTask, search }: DynamicTaskProps) {
       {
         tasksToRender.map((task) => (
           <TableBody key={task.id} className="bg-[#0F0F0F] hover:bg-transparent">
-            <TableRow className=" hover:bg-[#0F0F0F] group transition-all duration-200 ">
+            <TableRow className=" hover:bg-[#0F0F0F] group transition-all duration-200">
               <TableCell>
                 <div className="flex justify-center">
                   <Button
@@ -155,9 +155,7 @@ export function TaskData({ data, searchParamsTask, search }: DynamicTaskProps) {
            ${task.status !== "COMPLETED" ? "hover:border-emerald-600" : "border-emerald-600"}`}>
                     {
                       task.status !== "COMPLETED" ?
-                        <div className="flex justify-center items-center">
-                          <Circle className="text-[#ffffffe4] opacity-0 group-hover:opacity-30" />
-                        </div>
+                        <Circle className="text-[#ffffffe4] opacity-0 group-hover:opacity-30" />
                         :
                         <Check className="h-3.5 w-3.5 text-emerald-600" />
                     }

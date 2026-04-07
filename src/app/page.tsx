@@ -15,7 +15,7 @@ export default async function HomePage({
   const { status, search, chave } = await searchParams
 
   return (
-    <main className="flex flex-col items-center w-full px-4 mt-10">
+    <main className="flex flex-col items-center px-4 mt-10">
       <Headers />
       <section className="flex flex-col justify-center items-center mt-8 ">
         <TaskStats />
