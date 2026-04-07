@@ -148,14 +148,14 @@ export function TaskData({ data, searchParamsTask, search }: DynamicTaskProps) {
           <TableBody key={task.id} className="bg-[#0F0F0F] hover:bg-transparent">
             <TableRow className=" hover:bg-[#0F0F0F] group transition-all duration-200">
               <TableCell>
-                <div className="flex justify-center">
+                <div className="flex justify-center items-center">
                   <Button
                     onClick={() => handleMutatedStatus(task.id)}
                     className={`"flex w-5 h-6 items-center justify-center rounded-full border-2 transition-all duration-200  cursor-pointer border-bg-[#0F0F0F]
            ${task.status !== "COMPLETED" ? "hover:border-emerald-600" : "border-emerald-600"}`}>
                     {
                       task.status !== "COMPLETED" ?
-                        <Circle className="text-[#ffffffe4] opacity-0 group-hover:opacity-30" />
+                        <Circle className="h-3.5 w-3.5 ml-0.5 text-[#ffffffe4] opacity-0 group-hover:opacity-30" />
                         :
                         <Check className="h-3.5 w-3.5 text-emerald-600" />
                     }
@@ -200,12 +200,12 @@ export function TaskData({ data, searchParamsTask, search }: DynamicTaskProps) {
 
                     className="h-6 w-6 hover:cursor-pointer hover:bg-transparent bg-transparent shrink-0 rounded-lg "
                   >
-                    <Plus className="hidden text-[#ffffffe4] bg-transparent hover:bg-transparent group-hover:block" />
+                    <Plus className="md:hidden text-[#ffffffe4] bg-transparent md:hover:bg-transparent group-hover:block" />
                   </Button>
                   <Button
                     onClick={() => handleClickDelete(task.id)}
                     className="h-6 w-6 bg-transparent hover:bg-transparent cursor-pointer">
-                    <Trash2 className="hidden hover:bg-transparent text-red-800 group-hover:block" />
+                    <Trash2 className="md:hidden md:hover:bg-transparent text-red-800 group-hover:block" />
                   </Button>
                 </div>
               </TableCell>
