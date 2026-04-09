@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { CalendarIcon, Plus } from "lucide-react"
+import { CalendarIcon, Check, Plus } from "lucide-react"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form"
@@ -12,6 +12,7 @@ import { createTask } from "./_actions/createTask"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useEffect } from "react"
 import { updateTask } from "./_actions/updateTask"
+import { toast } from "react-toastify"
 
 
 const taskSchema = z.object({
@@ -72,8 +73,9 @@ export function TaskInput({ chave }: chaveProps) {
   async function onSubmit(data: TaskFormData) {
 
     if (chave) {
+
       try {
-        await updateTask({
+        const update = await updateTask({
           chave: chave,
           category: data.category,
           taskName: data.taskName,
@@ -82,6 +84,15 @@ export function TaskInput({ chave }: chaveProps) {
         })
 
         resetForm()
+        if (update) {
+          toast.info(update.data, {
+            theme: "dark",
+            icon: <Check color="white" />,
+
+          })
+        } else {
+          toast.error("Erro ao atualizar")
+        }
 
         const params = new URLSearchParams(searchParams)
 
@@ -94,7 +105,7 @@ export function TaskInput({ chave }: chaveProps) {
       }
     } else {
       try {
-        await createTask({
+        const cadTasks = await createTask({
           nameTask: data.taskName,
           category: data.category,
           status: data.status,
@@ -102,6 +113,15 @@ export function TaskInput({ chave }: chaveProps) {
         })
 
         resetForm()
+        if (cadTasks) {
+          toast.success(cadTasks.data, {
+            theme: "dark"
+          });
+        } else {
+          toast.error("Erro ao cadastrar", {
+            theme: "dark"
+          });
+        }
 
         router.refresh()
       } catch (err) {
@@ -223,11 +243,3 @@ export function TaskInput({ chave }: chaveProps) {
     </form>
   )
 }
-
-// comando para entregar dara em ptBr
-
-{/* {field.value ? (
-                    format(field.value, "PPP", { locale: ptBR })
-                  ) : (h-9 w-9 hover:cursor-pointer shrink-0 bg-blue-700 rounded-lg hover:bg-blue-500
-                    <span>Selecione uma data</span>
-                  )} */}

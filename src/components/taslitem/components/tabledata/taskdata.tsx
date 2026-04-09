@@ -4,11 +4,12 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { TableBody, TableCell, TableRow } from "@/components/ui/table"
 import { formatDate } from "@/utils/format.currency"
-import { Check, Circle, Plus, Trash2 } from "lucide-react"
+import { Check, Circle, Plus, RefreshCw, Trash2 } from "lucide-react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { deleteTask } from "../../_actions/deleteTask"
 import { mutationStatus } from "../../_actions/mutationStatus"
 import { DataProps } from "@/types/tasks"
+import { toast } from "react-toastify"
 
 
 const formatSlug = (text: string) => {
@@ -63,13 +64,31 @@ export function TaskData({ data, searchParamsTask, search }: DynamicTaskProps) {
     }
   }
 
-  function handleClickDelete(id: string) {
-    deleteTask(id)
+  async function handleClickDelete(id: string) {
+    const deleteId = await deleteTask(id)
+
+    if (deleteId) {
+      toast.success(`${deleteId.sucess}`, {
+        theme: "dark",
+        icon: <Trash2 size={20} color="#ff4d4d" />,
+      })
+    }
+
     router.refresh()
   }
 
-  function handleMutatedStatus(id: string) {
-    mutationStatus(id)
+  async function handleMutatedStatus(id: string) {
+    const mutationCompleted = await mutationStatus(id)
+    if (mutationCompleted) {
+      toast.success(`${mutationCompleted.success}`, {
+        theme: "dark",
+        icon: <RefreshCw className="animate-spin" />
+      })
+    } else {
+      toast.error(`Erro ao mudar a task`, {
+        theme: "dark"
+      })
+    }
     router.refresh()
   }
 

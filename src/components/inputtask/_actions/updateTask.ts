@@ -27,7 +27,9 @@ export async function updateTask({ chave, category, taskName, dueDate, status }:
             }
         })
 
-        return "Atualizado com sucesso"
+        return {
+            data: "Tarefa Atualizado com sucesso"
+        }
     } catch (error) {
         console.error("Erro ao atualizar a tarefa: ", error)
     }

@@ -17,7 +17,7 @@ export async function deleteTask(id: string) {
             }
         })
         return {
-            sucess: "Tarefa deletada com sucesso"
+            sucess: "Tarefa removida com sucesso!"
         }
 
         // return NextResponse.json({ sucess: "Tarefa deletada com sucesso" }, { status: 204 })

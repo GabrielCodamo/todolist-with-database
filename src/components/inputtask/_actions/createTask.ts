@@ -23,7 +23,6 @@ export async function createTask(data: createTaskProps) {
     try {
         const modifyNameTask = normalizeTaskField(data.nameTask)
         const modifyCategoryTask = normalizeTaskField(data.category)
-
         await prisma.task.create({
             data: {
                 taskName: modifyNameTask,

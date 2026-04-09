@@ -1,7 +1,6 @@
 "use server"
 import { prisma } from "@/lib/prisma"
 
-
 export async function mutationStatus(id: string) {
 
     if (!id) {
@@ -21,7 +20,7 @@ export async function mutationStatus(id: string) {
         })
 
         return {
-            success: "status mudado para concluido"
+            success: "Tarefa alterado para concluido"
         }
     } catch (error) {
         return console.log(error)
